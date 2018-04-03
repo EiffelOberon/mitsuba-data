@@ -1,0 +1,72 @@
+<scene version='2.0.0'>
+
+
+        <integrator type="mlt">
+            <float name="large_step_probability" value="0.3"/>
+            <integer name="mutations_per_pixel" value="1000"/>
+
+            <integrator type="direct">
+                <integer name="emitter_samples" value="16"/>
+                <integer name="bsdf_samples" value="0"/>
+            </integrator>
+        </integrator>
+
+
+    <sensor type="perspective">
+        <float name="near_clip" value="1"/>
+        <float name="far_clip" value="1000"/>
+
+        <transform name="to_world">
+            <lookat target="-0.5, -0.5, 0.2"
+                    origin="1.0, -6.0, 2"
+                    up    ="0.0, 0.0, 1.0"/>
+        </transform>
+
+        <film type="hdrfilm">
+            <rfilter type="box"/>
+            <integer name="width" value="192"/>
+            <integer name="height" value="108"/>
+        </film>
+
+        <sampler type="independent">
+            <integer name="sample_count" value="128"/>
+        </sampler>
+    </sensor>
+
+    <shape type="sphere">
+        <float name="radius" value="0.4"/>
+        <transform name="to_world">
+            <translate x="-1.2" y="-1.7" z="1.0"/>
+        </transform>
+
+        <bsdf type="diffuse">
+            <rgb name="reflectance" value="0.0f, 0.0f, 0.0f"/>
+        </bsdf>
+        <emitter type="area">
+            <spectrum name="radiance" value="100f"/>
+        </emitter>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="plane.ply"/>
+
+        <transform name="to_world">
+            <scale x="10.0" y="10.0" z="10.0"/>
+        </transform>
+        <bsdf type="diffuse">
+            <rgb name="reflectance" value="0.1f, 0.3f, 1.0f"/>
+        </bsdf>
+    </shape>
+    <shape type="ply">
+        <string name="filename" value="../ply/teapot.ply"/>
+
+        <transform name="to_world">
+            <scale x="0.25" y="0.25" z="0.25"/>
+            <translate x="0.0" y="0.0" z="0.0"/>
+        </transform>
+
+        <bsdf type="diffuse">
+            <rgb name="reflectance" value="1.0f, 0.3f, 0.1f"/>
+        </bsdf>
+    </shape>
+</scene>

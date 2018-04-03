@@ -1,0 +1,41 @@
+<scene version='2.0.0'>
+    <integrator type="path">
+    </integrator>
+
+    <sensor type="perspective">
+        <float name="near_clip" value="1"/>
+        <float name="far_clip" value="1000"/>
+
+        <transform name="to_world">
+            <lookat target="0.0, 0.0, 0.0"
+                    origin="0.0, 0.0, 1.0"
+                    up    ="0.0, 1.0, 0.0"/>
+        </transform>
+
+        <film type="hdrfilm">
+            <rfilter type="box"/>
+            <string name="pixel_format" value="rgb"/>
+            <integer name="width" value="128"/>
+            <integer name="height" value="128"/>
+        </film>
+
+        <sampler type="independent">
+            <integer name="sample_count" value="1024"/>
+        </sampler>
+    </sensor>
+
+    <!-- |     Emitters -->
+    <emitter type="constant">
+        <spectrum name="radiance" value="5.0f"/>
+    </emitter>
+
+    <!-- |     Objects -->
+    <shape type="rectangle">
+        <transform name="to_world">
+            <scale x="10.0" y="10.0" z="10.0"/>
+        </transform>
+        <bsdf type="diffuse">
+            <spectrum name="reflectance" value="1.0f"/>
+        </bsdf>
+    </shape>
+</scene>

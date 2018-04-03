@@ -1,0 +1,107 @@
+<scene version='2.0.0'>
+    <integrator type='direct'>
+        <integer name="emitter_samples" value="64"/>
+        <integer name="bsdf_samples" value="64"/>
+    </integrator>
+
+    <sensor type="perspective">
+        <float name="near_clip" value="1"/>
+        <float name="far_clip" value="1000"/>
+
+        <transform name="to_world">
+            <lookat target="-0.5, -0.5, 0.2"
+                    origin="1.0, -6.0, 2"
+                    up    ="0.0, 0.0, 1.0"/>
+        </transform>
+
+        <film type="hdrfilm">
+            <rfilter type="box"/>
+            <integer name="width" value="192"/>
+            <integer name="height" value="108"/>
+        </film>
+
+        <sampler type="independent">
+            <integer name="sample_count" value="512"/>
+        </sampler>
+    </sensor>
+
+    <!-- |     Emitters -->
+    <!-- <shape type="ply">
+        <string name="filename" value="../ply/sphere.ply"/>
+
+        <transform name="to_world">
+            <scale x="0.0004" y="0.0004" z="0.0004"/>
+            <translate x="-1.2" y="-1.7" z="1.0"/>
+        </transform>
+
+        <bsdf type="diffuse">
+            <rgb name="reflectance" value="0.0f, 0.0f, 0.0f"/>
+        </bsdf>
+        <emitter type="area">
+            <spectrum name="radiance" value="1000.0f"/>
+        </emitter>
+    </shape> -->
+    <shape type="sphere">
+        <float name="radius" value="0.4"/>
+        <transform name="to_world">
+            <translate x="-1.2" y="-1.7" z="1.0"/>
+        </transform>
+
+        <bsdf type="diffuse">
+            <rgb name="reflectance" value="0.0f, 0.0f, 0.0f"/>
+        </bsdf>
+        <emitter type="area">
+            <spectrum name="radiance" value="100f"/>
+        </emitter>
+    </shape>
+
+    <!-- |     Receiving shapes (diffuse) -->
+    <shape type="ply">
+        <string name="filename" value="plane.ply"/>
+
+        <transform name="to_world">
+            <scale x="10.0" y="10.0" z="10.0"/>
+        </transform>
+        <bsdf type="diffuse">
+            <rgb name="reflectance" value="0.1f, 0.3f, 1.0f"/>
+        </bsdf>
+    </shape>
+    <shape type="ply">
+        <string name="filename" value="../ply/teapot.ply"/>
+
+        <transform name="to_world">
+            <scale x="0.25" y="0.25" z="0.25"/>
+            <translate x="0.0" y="0.0" z="0.0"/>
+        </transform>
+
+
+        <emitter type="area">
+            <spectrum name="radiance" value="100f"/>
+        </emitter>
+
+        <bsdf type="diffuse">
+            <rgb name="reflectance" value="1.0f, 0.3f, 0.1f"/>
+        </bsdf>
+        <!-- <bsdf type="dielectric">
+            <rgb name="specular_reflectance" value="1.0f, 1.0f, 1.0f"/>
+            <rgb name="specular_transmittance" value="0.0f, 0.0f, 0.0f"/>
+        </bsdf> -->
+    </shape>
+    <shape type="ply">
+        <string name="filename" value="plane.ply"/>
+
+        <transform name="to_world">
+            <scale x="1.0" y="1.0" z="1.0"/>
+            <rotate x="1" y="0" z="0" angle="75"/>
+            <translate x="0.0" y="-2.5" z="1.0"/>
+        </transform>
+
+        <bsdf type="dielectric">
+            <rgb name="specular_reflectance" value="0.001f, 0.001f, 0.001f"/>
+            <rgb name="specular_transmittance" value="1.0f, 1.0f, 1.0f"/>
+
+            <!-- <rgb name="specular_reflectance" value="1.0f, 1.0f, 1.0f"/>
+            <rgb name="specular_transmittance" value="0.0f, 0.0f, 0.0f"/> -->
+        </bsdf>
+    </shape>
+</scene>

@@ -1,0 +1,61 @@
+<scene version='2.0.0'>
+    <integrator type="path">
+    </integrator>
+
+    <sensor type="perspective">
+        <float name="near_clip" value="0.01"/>
+        <float name="far_clip" value="100"/>
+
+        <transform name="to_world">
+            <lookat target="0.0, 0.0, 0.05"
+                    origin="0.0, 0.4, 0.6"
+                    up    ="0.0, 0.0, 1.0"/>
+        </transform>
+
+        <film type="hdrfilm">
+            <rfilter type="box"/>
+            <string name="pixel_format" value="rgb"/>
+            <integer name="width" value="128"/>
+            <integer name="height" value="128"/>
+        </film>
+
+        <sampler type="independent">
+            <integer name="sample_count" value="4096"/>
+        </sampler>
+    </sensor>
+
+    <!-- |     Emitters -->
+    <shape type="rectangle">
+        <transform name="to_world">
+            <scale x="0.5" y="0.5" z="0.5"/>
+            <rotate x="1.0" y="0.0" z="0.0" angle="180"/>
+            <translate x="0.0" y="0.0" z="1.0"/>
+        </transform>
+        <bsdf type="diffuse">
+            <spectrum name="reflectance" value="0.0"/>
+        </bsdf>
+        <emitter type="area">
+            <spectrum name="radiance" value="3.0"/>
+        </emitter>
+    </shape>
+
+    <!-- |     Objects -->
+    <shape type="rectangle">
+        <transform name="to_world">
+            <scale x="10.0" y="10.0" z="10.0"/>
+        </transform>
+        <bsdf type="diffuse">
+            <spectrum name="reflectance" value="1.0"/>
+        </bsdf>
+    </shape>
+
+    <shape type="sphere">
+        <transform name="to_world">
+            <scale x="0.1" y="0.1" z="0.1"/>
+            <translate x="0.0" y="0.0" z="0.05"/>
+        </transform>
+        <bsdf type="diffuse">
+            <rgb name="reflectance" value="0.61, 0.35, 0.71"/>
+        </bsdf>
+    </shape>
+</scene>
